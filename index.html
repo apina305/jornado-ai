@@ -9,36 +9,20 @@
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
-  --navy: #0d1b2a;
-  --navy2: #162032;
-  --navy3: #1e2f45;
-  --gold: #c9a84c;
-  --gold2: #e8c97b;
-  --cream: #f5f0e8;
-  --cream2: #ede5d5;
-  --text: #1a1a1a;
-  --white: #fff;
-  --border: #e0d8c8;
+  --navy: #0d1b2a; --navy2: #162032; --navy3: #1e2f45;
+  --gold: #c9a84c; --gold2: #e8c97b;
+  --cream: #f5f0e8; --cream2: #ede5d5;
+  --text: #1a1a1a; --white: #fff; --border: #e0d8c8;
 }
 html, body { height: 100%; font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); overflow: hidden; }
 
-/* ── HEADER ── */
-.header {
-  background: var(--navy);
-  padding: 1.1rem 2rem;
-  border-bottom: 2px solid var(--gold);
-  display: flex;
-  align-items: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-}
+.header { background: var(--navy); padding: 1.1rem 2rem; border-bottom: 2px solid var(--gold); display: flex; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
 .logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--gold); letter-spacing: -0.02em; }
 .logo span { color: var(--white); font-style: italic; }
 .tagline { font-size: 0.7rem; color: rgba(255,255,255,0.45); letter-spacing: 0.05em; text-transform: uppercase; }
 
-/* ── LAYOUT ── */
 .container { display: flex; height: calc(100vh - 68px); }
 
-/* ── CHAT ── */
 .chat-panel { flex: 1; display: flex; flex-direction: column; min-width: 0; }
 .messages { flex: 1; overflow-y: auto; padding: 1.5rem; display: flex; flex-direction: column; gap: 1.25rem; }
 
@@ -55,7 +39,6 @@ html, body { height: 100%; font-family: 'DM Sans', sans-serif; background: var(-
 .message.user .bubble { background: var(--navy); color: var(--white); border: 1px solid var(--gold); border-radius: 12px 12px 0 12px; max-width: 75%; }
 .message.assistant .bubble { background: var(--white); color: var(--text); border: 1px solid var(--border); border-radius: 12px 12px 12px 0; max-width: 75%; }
 
-/* ── TYPING ── */
 .typing { display: none; gap: 0.75rem; padding: 0 1.5rem; margin-bottom: 0.5rem; }
 .typing.active { display: flex; }
 .typing .bubble { display: flex; gap: 4px; align-items: center; padding: 0.7rem 1rem; background: var(--white); border: 1px solid var(--border); border-radius: 12px 12px 12px 0; }
@@ -64,7 +47,6 @@ html, body { height: 100%; font-family: 'DM Sans', sans-serif; background: var(-
 .dot:nth-child(3) { animation-delay: 0.4s; }
 @keyframes bounce { 0%,80%,100% { transform: translateY(0); } 40% { transform: translateY(-5px); } }
 
-/* ── INPUT ── */
 .input-area { padding: 1.25rem; border-top: 1px solid var(--border); background: var(--cream2); }
 .input-wrapper { display: flex; gap: 0.75rem; }
 .input-wrapper input { flex: 1; padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: 6px; font-family: 'DM Sans', sans-serif; font-size: 0.92rem; transition: border-color 0.2s, box-shadow 0.2s; }
@@ -73,7 +55,6 @@ html, body { height: 100%; font-family: 'DM Sans', sans-serif; background: var(-
 .send-btn:hover:not(:disabled) { background: var(--gold2); transform: translateY(-1px); }
 .send-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-/* ── STAYS SIDEBAR ── */
 .stays-panel { width: 370px; background: var(--navy); display: flex; flex-direction: column; border-left: 2px solid var(--gold); overflow: hidden; }
 .stays-header { padding: 1.15rem 1.25rem; border-bottom: 1px solid rgba(201,168,76,0.3); }
 .stays-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--gold); }
@@ -88,157 +69,37 @@ html, body { height: 100%; font-family: 'DM Sans', sans-serif; background: var(-
 .stay-link { display: flex; align-items: center; gap: 0.5rem; background: var(--navy2); border: 1px solid rgba(201,168,76,0.25); border-radius: 6px; padding: 0.55rem 0.75rem; color: var(--gold2); text-decoration: none; font-size: 0.78rem; font-weight: 500; transition: all 0.2s; }
 .stay-link:hover { background: var(--navy3); border-color: var(--gold); color: var(--gold); }
 
-/* ── SCROLLBAR ── */
 .messages::-webkit-scrollbar { width: 6px; }
 .messages::-webkit-scrollbar-track { background: transparent; }
 .messages::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
 
-/* ── PRICE ALERT MODAL ── */
-.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(13,27,42,0.85); backdrop-filter: blur(4px); z-index: 1000; align-items: center; justify-content: center; padding: 1rem; }
-.modal-overlay.active { display: flex; }
-.modal { background: var(--cream); border: 2px solid var(--gold); border-radius: 12px; padding: 2rem; max-width: 420px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,0.5); animation: modalIn 0.3s ease-out; }
-@keyframes modalIn { from { opacity: 0; transform: translateY(20px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
-.modal-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 0.4rem; }
-.modal-sub { font-size: 0.85rem; color: #666; margin-bottom: 1.25rem; }
-.modal-input { width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: 6px; font-family: 'DM Sans', sans-serif; font-size: 0.92rem; margin-bottom: 0.75rem; background: white; }
-.modal-input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,168,76,0.1); }
-.modal-btns { display: flex; gap: 0.5rem; margin-top: 0.5rem; }
-.modal-btn { flex: 1; padding: 0.75rem; border-radius: 6px; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; border: none; transition: all 0.2s; }
-.modal-btn-primary { background: var(--gold); color: var(--navy); }
-.modal-btn-primary:hover { background: var(--gold2); }
-.modal-btn-secondary { background: transparent; color: #666; border: 1px solid var(--border); }
-.modal-btn-secondary:hover { background: var(--border); }
-.modal-msg { margin-top: 0.75rem; padding: 0.6rem; border-radius: 6px; font-size: 0.82rem; display: none; }
-.modal-msg.success { display: block; background: rgba(45,122,79,0.1); color: #2d7a4f; border: 1px solid #2d7a4f; }
-.modal-msg.error { display: block; background: rgba(192,57,43,0.1); color: #c0392b; border: 1px solid #c0392b; }
-
-/* Alert button (gold accent) */
 .alert-btn { display: flex; align-items: center; justify-content: center; gap: 0.4rem; background: linear-gradient(135deg, var(--gold), var(--gold2)); color: var(--navy); border: none; padding: 0.6rem 0.8rem; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.78rem; margin-top: 0.4rem; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
 .alert-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(201,168,76,0.4); }
 
-/* ── MOBILE FLOATING STAYS BUTTON ── */
-.mobile-stays-fab {
-  display: none;
-  position: fixed;
-  bottom: 90px;
-  right: 16px;
-  background: linear-gradient(135deg, var(--gold), var(--gold2));
-  color: var(--navy);
-  border: 2px solid var(--navy);
-  border-radius: 50px;
-  padding: 0.75rem 1.1rem;
-  font-weight: 600;
-  font-size: 0.85rem;
-  box-shadow: 0 6px 20px rgba(13,27,42,0.4);
-  cursor: pointer;
-  z-index: 100;
-  font-family: 'DM Sans', sans-serif;
-  align-items: center;
-  gap: 0.4rem;
-  animation: fabIn 0.4s ease-out;
-}
+.mobile-stays-fab { display: none; position: fixed; bottom: 90px; right: 16px; background: linear-gradient(135deg, var(--gold), var(--gold2)); color: var(--navy); border: 2px solid var(--navy); border-radius: 50px; padding: 0.75rem 1.1rem; font-weight: 600; font-size: 0.85rem; box-shadow: 0 6px 20px rgba(13,27,42,0.4); cursor: pointer; z-index: 100; font-family: 'DM Sans', sans-serif; align-items: center; gap: 0.4rem; animation: fabIn 0.4s ease-out; }
 @keyframes fabIn { from { opacity: 0; transform: translateY(20px) scale(0.9); } to { opacity: 1; transform: translateY(0) scale(1); } }
 .mobile-stays-fab.active { display: flex; }
 .fab-badge { background: var(--navy); color: var(--gold); font-size: 0.65rem; padding: 0.15rem 0.4rem; border-radius: 10px; font-weight: 700; }
 
-/* ── MOBILE BOTTOM SHEET ── */
-.sheet-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(13,27,42,0.7);
-  backdrop-filter: blur(4px);
-  z-index: 200;
-  animation: fadeIn 0.2s;
-}
+.sheet-overlay { display: none; position: fixed; inset: 0; background: rgba(13,27,42,0.7); backdrop-filter: blur(4px); z-index: 200; }
 .sheet-overlay.active { display: block; }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-.bottom-sheet {
-  display: none;
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: var(--navy);
-  border-top: 2px solid var(--gold);
-  border-radius: 20px 20px 0 0;
-  z-index: 201;
-  max-height: 85vh;
-  flex-direction: column;
-  animation: sheetUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 -10px 40px rgba(0,0,0,0.5);
-}
+.bottom-sheet { display: none; position: fixed; left: 0; right: 0; bottom: 0; background: var(--navy); border-top: 2px solid var(--gold); border-radius: 20px 20px 0 0; z-index: 201; max-height: 85vh; flex-direction: column; animation: sheetUp 0.35s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 -10px 40px rgba(0,0,0,0.5); }
 .bottom-sheet.active { display: flex; }
 @keyframes sheetUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
 
-.sheet-handle {
-  width: 40px;
-  height: 4px;
-  background: rgba(201,168,76,0.4);
-  border-radius: 2px;
-  margin: 12px auto 0;
-  flex-shrink: 0;
-}
-
-.sheet-header {
-  padding: 1rem 1.25rem 0.75rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-shrink: 0;
-}
+.sheet-handle { width: 40px; height: 4px; background: rgba(201,168,76,0.4); border-radius: 2px; margin: 12px auto 0; flex-shrink: 0; }
+.sheet-header { padding: 1rem 1.25rem 0.75rem; display: flex; justify-content: space-between; align-items: flex-start; flex-shrink: 0; }
 .sheet-title-block { flex: 1; }
 .sheet-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--gold); }
 .sheet-sub { font-size: 0.72rem; color: rgba(255,255,255,0.5); margin-top: 0.2rem; }
-.sheet-close {
-  background: rgba(201,168,76,0.15);
-  border: 1px solid rgba(201,168,76,0.3);
-  color: var(--gold);
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  font-size: 1.1rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.sheet-close:hover { background: rgba(201,168,76,0.25); }
+.sheet-close { background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); color: var(--gold); width: 32px; height: 32px; border-radius: 50%; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.sheet-content { flex: 1; overflow-y: auto; padding: 0.5rem 1.25rem 1.5rem; }
+.sheet-intro { font-size: 0.82rem; color: rgba(255,255,255,0.6); margin-bottom: 1rem; line-height: 1.4; }
+.sheet-links { display: flex; flex-direction: column; gap: 0.6rem; }
+.sheet-links .stay-link { padding: 0.95rem 1rem; font-size: 0.9rem; border-radius: 8px; }
+.sheet-links .alert-btn { padding: 0.95rem 1rem; font-size: 0.9rem; margin-top: 0.3rem; }
 
-.sheet-content {
-  flex: 1;
-  overflow-y: auto;
-  padding: 0.5rem 1.25rem 1.5rem;
-}
-
-.sheet-intro {
-  font-size: 0.82rem;
-  color: rgba(255,255,255,0.6);
-  margin-bottom: 1rem;
-  line-height: 1.4;
-}
-
-.sheet-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.sheet-links .stay-link {
-  padding: 0.95rem 1rem;
-  font-size: 0.9rem;
-  border-radius: 8px;
-}
-
-.sheet-links .alert-btn {
-  padding: 0.95rem 1rem;
-  font-size: 0.9rem;
-  margin-top: 0.3rem;
-}
-
-/* ── MOBILE ── */
 @media (max-width: 900px) { .stays-panel { display: none; } }
 @media (max-width: 600px) {
   .header { padding: 0.9rem 1rem; }
@@ -264,7 +125,7 @@ html, body { height: 100%; font-family: 'DM Sans', sans-serif; background: var(-
     <div class="messages" id="messages">
       <div class="message assistant">
         <div class="avatar">✈️</div>
-        <div class="bubble"><strong>Hey, I'm Jornado.</strong> Think of me as your well-traveled friend who knows the best spots — not the tourist traps. Tell me where you're going (or where you wish you were going), and I'll find hidden gems, real deals, and the kind of trip people actually remember.<br><br>💡 <em>As we chat, your stays, flights & things to do will appear on the side (or as a button on mobile). Write to me in any language — I'll respond in yours.</em></div>
+        <div class="bubble"><strong>Hey, I'm Jornado.</strong> Think of me as your well-traveled friend who knows the best spots — not the tourist traps. Tell me where you're going and I'll find hidden gems, real deals, and the kind of trip people actually remember.<br><br>💡 <em>As we chat, your stays, flights & things to do appear on the side (or as a button on mobile). Write to me in any language — I'll respond in yours.</em></div>
       </div>
     </div>
     <div class="typing" id="typing">
@@ -273,7 +134,7 @@ html, body { height: 100%; font-family: 'DM Sans', sans-serif; background: var(-
     </div>
     <div class="input-area">
       <div class="input-wrapper">
-        <input type="text" id="input" placeholder="Where do you want to go? (e.g., Barcelona 5 days, $1500 budget)" onkeydown="if(event.key==='Enter')send()">
+        <input type="text" id="input" placeholder="Where do you want to go? (e.g., Barcelona 5 days)" onkeydown="if(event.key==='Enter')send()">
         <button class="send-btn" id="btn" onclick="send()">Send</button>
       </div>
     </div>
@@ -295,12 +156,40 @@ html, body { height: 100%; font-family: 'DM Sans', sans-serif; background: var(-
   </div>
 </div>
 
+<button class="mobile-stays-fab" id="mobileFab" onclick="openSheet()">
+  <span>🏨</span>
+  <span id="fabText">View Trip</span>
+  <span class="fab-badge">4</span>
+</button>
+
+<div class="sheet-overlay" id="sheetOverlay" onclick="closeSheet()"></div>
+<div class="bottom-sheet" id="bottomSheet">
+  <div class="sheet-handle"></div>
+  <div class="sheet-header">
+    <div class="sheet-title-block">
+      <div class="sheet-title" id="sheetTitle">Your Trip</div>
+      <div class="sheet-sub" id="sheetSub">Stays, flights & experiences</div>
+    </div>
+    <button class="sheet-close" onclick="closeSheet()">✕</button>
+  </div>
+  <div class="sheet-content">
+    <div class="sheet-intro">Tap any option to open it directly.</div>
+    <div class="sheet-links" id="sheetLinks"></div>
+  </div>
+</div>
+
 <script>
-// State
+// ============================================================
+// CONFIG — your API keys are embedded here for direct API calls
+// (since this is a single-file deployment)
+// ============================================================
+const GEMINI_API_KEY = 'AIzaSyB12nlcH3mOsDbvJP3NcZRsdd2U3pHec9I';
+const STAY22_AID = 'stay22_a08e9e2b-2c3b-4f47-8a87-aafb48af8d3a';
+const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
+
 const chatHistory = [];
 let currentDest = '';
 
-// 50+ city coordinates for Stay22 map
 const cities = {
   barcelona:[41.3874,2.1686],paris:[48.8566,2.3522],london:[51.5074,-0.1278],
   tokyo:[35.6762,139.6503],'new york':[40.7128,-74.006],rome:[41.9028,12.4964],
@@ -318,16 +207,23 @@ const cities = {
   'costa rica':[9.9281,-84.0907],cartagena:[10.391,-75.5364],
   cusco:[-13.5319,-71.9675],marrakech:[31.6295,-7.9811],
   'cape town':[-33.9249,18.4241],'rio de janeiro':[-22.9068,-43.1729],
-  'san juan':[18.4655,-66.1057],bogota:[4.711,-74.0721],
-  medellín:[6.2476,-75.5658],lima:[-12.0464,-77.0428],
-  'puerto rico':[18.2208,-66.5901],toronto:[43.6532,-79.3832],
+  lima:[-12.0464,-77.0428],toronto:[43.6532,-79.3832],
   montreal:[45.5017,-73.5673],osaka:[34.6937,135.5023],
-  vienna:[48.2082,16.3738],'san francisco':[37.7749,-122.4194],
-  chicago:[41.8781,-87.6298],dublin:[53.3498,-6.2603],
-  edinburgh:[55.9533,-3.1883],porto:[41.1579,-8.6291],
-  'ho chi minh':[10.8231,106.6297],hanoi:[21.0278,105.8342],
-  'siem reap':[13.3671,103.86],'chiang mai':[18.7883,98.9853],
+  vienna:[48.2082,16.3738],dublin:[53.3498,-6.2603],
+  porto:[41.1579,-8.6291],hanoi:[21.0278,105.8342]
 };
+
+const systemPrompt = `You are Jornado AI — a witty, well-traveled friend who happens to be a travel expert. You're NOT a sterile booking bot. You have OPINIONS and PERSONALITY.
+
+VOICE: Conversational, warm, slightly playful — like texting a friend who's been everywhere. Confident with recommendations. Use vivid sensory language. Drop opinions: "Hot take:", "Real talk:", "Trust me on this one".
+
+LANGUAGE - CRITICAL: ALWAYS respond in the SAME language the user wrote to you in. Spanish → Spanish. French → French. Japanese → Japanese. Detect from their message and match naturally. Never default to English.
+
+WHAT MAKES YOU DIFFERENT: Hunt HIDDEN GEMS not tourist clichés. Give SPECIFIC names of restaurants, neighborhoods, hotels. Serve travelers from ANY country, ANY budget, ANY style.
+
+ALWAYS: Lead with the answer. Include the destination city name clearly. Use **bold** for emphasis. Keep responses focused — 3-5 short paragraphs max.
+
+NEVER sound like a generic AI. You care about your users having the trip of their life.`;
 
 async function send() {
   const el = document.getElementById('input');
@@ -342,17 +238,12 @@ async function send() {
   document.getElementById('typing').classList.add('active');
 
   try {
-    const reply = await chat(msg);
+    const reply = await callGemini(msg);
     addBubble(reply, 'assistant');
     chatHistory.push({ role: 'model', parts: [{ text: reply }] });
     findCity(msg + ' ' + reply);
   } catch (e) {
-    if (e.message === 'PREVIEW_MODE') {
-      addBubble("👋 <strong>You're in preview mode!</strong><br><br>The AI brain isn't connected here yet — that happens once you deploy to Vercel (takes 5 minutes, instructions in the README).<br><br>But you can see exactly how Jornado will look and feel. Once live, I'll respond to you in any language about any destination, with hidden gems and real deals.<br><br><em>Try mentioning a city like \"Tokyo\" or \"Paris\" and watch the stays sidebar load on the right →</em>", 'assistant');
-      findCity(msg);
-    } else {
-      addBubble('⚠️ ' + (e.message || 'Something went wrong. Please try again.'), 'assistant');
-    }
+    addBubble('⚠️ ' + (e.message || 'Something went wrong. Please try again.'), 'assistant');
   }
 
   document.getElementById('btn').disabled = false;
@@ -360,42 +251,38 @@ async function send() {
   el.focus();
 }
 
-async function chat(msg) {
-  const body = {
-    contents: [...chatHistory, { role: 'user', parts: [{ text: msg }] }]
-  };
+async function callGemini(userMessage) {
+  const contents = chatHistory.map(m => ({
+    role: m.role === 'model' ? 'model' : 'user',
+    parts: m.parts
+  }));
+  contents.push({ role: 'user', parts: [{ text: userMessage }] });
 
-  let r;
-  try {
-    r = await fetch('/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    });
-  } catch (networkErr) {
-    throw new Error('PREVIEW_MODE');
+  const res = await fetch(`${GEMINI_URL}?key=${GEMINI_API_KEY}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      systemInstruction: { parts: [{ text: systemPrompt }] },
+      contents,
+      generationConfig: { temperature: 0.7, topK: 40, topP: 0.95, maxOutputTokens: 1024 }
+    })
+  });
+
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.error?.message || 'API Error');
   }
 
-  // 404 = preview mode (no backend deployed yet)
-  if (r.status === 404) throw new Error('PREVIEW_MODE');
-
-  if (!r.ok) {
-    const err = await r.json().catch(() => ({}));
-    throw new Error(err.error || 'Server error (' + r.status + ')');
-  }
-
-  const data = await r.json();
+  const data = await res.json();
   const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-  if (!text) throw new Error('Empty AI response');
+  if (!text) throw new Error('Empty response');
   return text;
 }
 
 function findCity(text) {
   const t = ' ' + text.toLowerCase().replace(/[^\w\s]/g, ' ') + ' ';
-  // Sort cities by length (longest first) so "new york" matches before "york" would
   const sorted = Object.entries(cities).sort((a, b) => b[0].length - a[0].length);
   for (const [name, coords] of sorted) {
-    // Word boundary check: city name must be surrounded by spaces or punctuation
     const pattern = new RegExp('\\b' + name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'i');
     if (pattern.test(t)) {
       showStays(name, coords[0], coords[1]);
@@ -404,42 +291,24 @@ function findCity(text) {
   }
 }
 
-async function showStays(dest, lat, lng) {
+function showStays(dest, lat, lng) {
   const nice = dest.replace(/\b\w/g, c => c.toUpperCase());
   currentDest = nice;
 
-  let d;
-  try {
-    const r = await fetch('/api/stays', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ destination: dest, lat, lng })
-    });
-    if (r.ok) d = await r.json();
-  } catch {}
-
-  // Fallback: generate Stay22 URLs directly (preview mode)
-  if (!d) {
-    const aid = 'stay22_a08e9e2b-2c3b-4f47-8a87-aafb48af8d3a';
-    const params = `aid=${aid}&lat=${lat}&lng=${lng}&campaign=jornado-ai-chat&maincolor=c9a84c`;
-    d = {
-      embedUrl: `https://www.stay22.com/embed/gm?${params}`,
-      searchLink: `https://www.stay22.com/allez/roam?${params}`,
-      flightsLink: `https://www.stay22.com/allez/kayak?${params}`,
-      activitiesLink: `https://www.stay22.com/allez/getyourguide?${params}`,
-      bookingLink: `https://www.stay22.com/allez/booking?${params}`
-    };
-  }
+  const params = `aid=${STAY22_AID}&lat=${lat}&lng=${lng}&campaign=jornado-ai-chat&maincolor=c9a84c`;
+  const embedUrl = `https://www.stay22.com/embed/gm?${params}`;
+  const searchLink = `https://www.stay22.com/allez/roam?${params}`;
+  const flightsLink = `https://www.stay22.com/allez/kayak?${params}`;
+  const activitiesLink = `https://www.stay22.com/allez/getyourguide?${params}`;
+  const bookingLink = `https://www.stay22.com/allez/booking?${params}`;
 
   const linksHtml =
-    `<a href="${d.searchLink}" target="_blank" class="stay-link">🏨 Browse Stays in ${nice}</a>` +
-    `<a href="${d.flightsLink}" target="_blank" class="stay-link">✈️ Find Flights to ${nice}</a>` +
-    `<a href="${d.activitiesLink}" target="_blank" class="stay-link">🎫 Things to Do in ${nice}</a>` +
-    `<a href="${d.bookingLink}" target="_blank" class="stay-link">🔍 Search Booking.com</a>` +
-    `<button class="alert-btn" onclick="openAlert()">📈 Track Prices for ${nice}</button>`;
+    `<a href="${searchLink}" target="_blank" class="stay-link">🏨 Browse Stays in ${nice}</a>` +
+    `<a href="${flightsLink}" target="_blank" class="stay-link">✈️ Find Flights to ${nice}</a>` +
+    `<a href="${activitiesLink}" target="_blank" class="stay-link">🎫 Things to Do in ${nice}</a>` +
+    `<a href="${bookingLink}" target="_blank" class="stay-link">🔍 Search Booking.com</a>`;
 
-  // ── DESKTOP SIDEBAR ──
-  document.getElementById('staysMap').src = d.embedUrl;
+  document.getElementById('staysMap').src = embedUrl;
   document.getElementById('staysMap').style.display = 'block';
   document.getElementById('staysEmpty').style.display = 'none';
   document.getElementById('staysTitle').textContent = 'Trip to ' + nice;
@@ -448,28 +317,18 @@ async function showStays(dest, lat, lng) {
   desk.innerHTML = linksHtml;
   desk.classList.add('active');
 
-  // ── MOBILE BOTTOM SHEET ──
   document.getElementById('sheetTitle').textContent = 'Trip to ' + nice;
   document.getElementById('sheetSub').textContent = 'Stays, flights & experiences';
   document.getElementById('sheetLinks').innerHTML = linksHtml;
 
-  // ── MOBILE FAB BUTTON ──
   document.getElementById('fabText').textContent = nice;
   document.getElementById('mobileFab').classList.add('active');
-
-  // Show first-time hint on mobile
-  showMobileHint();
 }
 
 function openSheet() {
   document.getElementById('sheetOverlay').classList.add('active');
   document.getElementById('bottomSheet').classList.add('active');
   document.body.style.overflow = 'hidden';
-  // Mark as seen so we stop showing the hint
-  sessionStorage.setItem('sheetSeen', '1');
-  document.getElementById('mobileHint')?.remove();
-
-  // Close sheet when any link is tapped (so it's not still open when they return)
   document.querySelectorAll('#sheetLinks .stay-link').forEach(link => {
     link.addEventListener('click', () => setTimeout(closeSheet, 100), { once: true });
   });
@@ -479,66 +338,6 @@ function closeSheet() {
   document.getElementById('sheetOverlay').classList.remove('active');
   document.getElementById('bottomSheet').classList.remove('active');
   document.body.style.overflow = '';
-}
-
-// Show a one-time hint on mobile when stays first load
-function showMobileHint() {
-  if (window.innerWidth > 900) return;
-  if (sessionStorage.getItem('sheetSeen')) return;
-  if (document.getElementById('mobileHint')) return;
-
-  const hint = document.createElement('div');
-  hint.id = 'mobileHint';
-  hint.style.cssText = 'position:fixed;bottom:160px;right:16px;max-width:220px;background:var(--navy);color:var(--white);border:1px solid var(--gold);border-radius:10px;padding:0.75rem 0.9rem;font-size:0.78rem;line-height:1.4;z-index:101;box-shadow:0 8px 24px rgba(0,0,0,0.4);animation:fabIn 0.4s ease-out;';
-  hint.innerHTML = '👇 <strong style="color:var(--gold);">Tap the gold button</strong> to see stays, flights & things to do for your trip.<div style="position:absolute;bottom:-7px;right:30px;width:14px;height:14px;background:var(--navy);border-right:1px solid var(--gold);border-bottom:1px solid var(--gold);transform:rotate(45deg);"></div>';
-  document.body.appendChild(hint);
-
-  // Auto-dismiss after 8 seconds
-  setTimeout(() => hint.remove(), 8000);
-}
-
-function openAlert() {
-  document.getElementById('alertSub').textContent = `We'll watch flight & hotel prices for ${currentDest} and email you when they drop.`;
-  document.getElementById('alertModal').classList.add('active');
-  document.getElementById('alertEmail').focus();
-}
-
-function closeAlert() {
-  document.getElementById('alertModal').classList.remove('active');
-  document.getElementById('alertMsg').className = 'modal-msg';
-  document.getElementById('alertEmail').value = '';
-}
-
-async function submitAlert() {
-  const email = document.getElementById('alertEmail').value.trim();
-  const msg = document.getElementById('alertMsg');
-
-  if (!email) {
-    msg.textContent = 'Please enter your email';
-    msg.className = 'modal-msg error';
-    return;
-  }
-
-  try {
-    const r = await fetch('/api/alerts', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, destination: currentDest, type: 'flight+hotel' })
-    });
-    const d = await r.json();
-
-    if (r.ok) {
-      msg.textContent = '✓ ' + d.message;
-      msg.className = 'modal-msg success';
-      setTimeout(closeAlert, 2500);
-    } else {
-      msg.textContent = d.error || 'Something went wrong';
-      msg.className = 'modal-msg error';
-    }
-  } catch (e) {
-    msg.textContent = 'Network error. Please try again.';
-    msg.className = 'modal-msg error';
-  }
 }
 
 function addBubble(text, who) {
@@ -552,10 +351,7 @@ function addBubble(text, who) {
 
   const bb = document.createElement('div');
   bb.className = 'bubble';
-  bb.innerHTML = text
-    .replace(/\n/g, '<br>')
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\*(.*?)\*/g, '<em>$1</em>');
+  bb.innerHTML = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*(.*?)\*/g, '<em>$1</em>');
 
   if (who === 'user') { row.append(bb, av); }
   else { row.append(av, bb); }
@@ -564,43 +360,5 @@ function addBubble(text, who) {
   box.scrollTop = box.scrollHeight;
 }
 </script>
-<!-- Mobile Floating "View Stays" Button -->
-<button class="mobile-stays-fab" id="mobileFab" onclick="openSheet()">
-  <span>🏨</span>
-  <span id="fabText">View Trip</span>
-  <span class="fab-badge">4</span>
-</button>
-
-<!-- Mobile Bottom Sheet -->
-<div class="sheet-overlay" id="sheetOverlay" onclick="closeSheet()"></div>
-<div class="bottom-sheet" id="bottomSheet">
-  <div class="sheet-handle"></div>
-  <div class="sheet-header">
-    <div class="sheet-title-block">
-      <div class="sheet-title" id="sheetTitle">Your Trip</div>
-      <div class="sheet-sub" id="sheetSub">Stays, flights & experiences</div>
-    </div>
-    <button class="sheet-close" onclick="closeSheet()">✕</button>
-  </div>
-  <div class="sheet-content">
-    <div class="sheet-intro" id="sheetIntro">Tap any option to open it directly.</div>
-    <div class="sheet-links" id="sheetLinks"></div>
-  </div>
-</div>
-
-<!-- Price Alert Modal -->
-<div class="modal-overlay" id="alertModal" onclick="if(event.target===this)closeAlert()">
-  <div class="modal">
-    <div class="modal-title">📈 Track Prices</div>
-    <div class="modal-sub" id="alertSub">We'll watch flight & hotel prices for your destination and email you when they drop.</div>
-    <input type="email" class="modal-input" id="alertEmail" placeholder="your@email.com">
-    <div class="modal-btns">
-      <button class="modal-btn modal-btn-secondary" onclick="closeAlert()">Cancel</button>
-      <button class="modal-btn modal-btn-primary" onclick="submitAlert()">Track Prices</button>
-    </div>
-    <div class="modal-msg" id="alertMsg"></div>
-  </div>
-</div>
-
 </body>
 </html>
