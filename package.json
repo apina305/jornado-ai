@@ -1,0 +1,10 @@
+{
+  "name": "jornado-ai",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Jornado AI Travel Assistant — Gemini + Stay22 + KV + Resend",
+  "dependencies": {
+    "@vercel/kv": "^2.0.0"
+  }
+}
